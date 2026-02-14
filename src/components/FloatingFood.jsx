@@ -86,9 +86,9 @@ function Coffee({ position }) {
     )
 }
 
-export function FloatingFood() {
+export function FloatingFood({ scale = 1 }) {
     return (
-        <group>
+        <group scale={scale}>
             <ChickenRoll position={[-1.2, 0.5, 0]} />
             <Coffee position={[1.2, -0.5, 0]} />
         </group>

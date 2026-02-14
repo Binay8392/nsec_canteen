@@ -36,10 +36,11 @@ export function GameModal({ isOpen, onClose }) {
             const parent = canvas.parentElement
             if (parent) {
                 canvas.width = Math.min(parent.clientWidth - 32, 400) // padding
-                canvas.height = 500
+                canvas.height = Math.min(window.innerHeight * 0.6, 500)
             }
         }
         resizeCanvas()
+        window.addEventListener('resize', resizeCanvas)
 
         // Input handling
         const jump = () => {
@@ -206,6 +207,7 @@ export function GameModal({ isOpen, onClose }) {
             cancelAnimationFrame(animationFrameId)
             window.removeEventListener('keydown', handleKeyDown)
             canvas.removeEventListener('mousedown', jump)
+            window.removeEventListener('resize', resizeCanvas)
         }
     }, [isOpen, gameState]) // Re-run effect when gameState changes to restart loop cleanly
 

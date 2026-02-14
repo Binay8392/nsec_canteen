@@ -2,8 +2,15 @@ import { Environment, Float, OrbitControls, Sparkles, PerspectiveCamera } from '
 import { FloatingFood } from './FloatingFood'
 import { FloatingQR } from './FloatingQR'
 import { Bloom, EffectComposer, Vignette, Noise } from '@react-three/postprocessing'
+import { useThree } from '@react-three/fiber'
 
 export function Scene() {
+    const { viewport } = useThree()
+    const isMobile = viewport.width < 5
+    const foodScale = isMobile ? 0.6 : 1
+    const qrScale = isMobile ? 0.6 : 1
+    const qrPosition = isMobile ? [0, -2.5, 0] : [0, -3.5, 0]
+
     return (
         <>
             {/* Lighting */}
@@ -20,11 +27,11 @@ export function Scene() {
 
             {/* Floating Elements */}
             <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
-                <FloatingFood />
+                <FloatingFood scale={foodScale} />
             </Float>
 
             <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.5}>
-                <FloatingQR position={[0, -3.5, 0]} />
+                <FloatingQR position={qrPosition} scale={qrScale} />
             </Float>
 
             {/* Particles/Atmosphere */}

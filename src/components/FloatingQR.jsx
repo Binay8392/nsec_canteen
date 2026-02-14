@@ -2,7 +2,7 @@ import { useFrame } from '@react-three/fiber'
 import { useRef, useEffect } from 'react'
 import * as THREE from 'three'
 
-export function FloatingQR({ position }) {
+export function FloatingQR({ position, ...props }) {
     const mesh = useRef()
     const canvasRef = useRef(document.createElement('canvas'))
 
@@ -44,7 +44,7 @@ export function FloatingQR({ position }) {
     })
 
     return (
-        <mesh ref={mesh} position={position} rotation={[-Math.PI / 6, 0, 0]}>
+        <mesh ref={mesh} position={position} rotation={[-Math.PI / 6, 0, 0]} scale={props.scale || 1}>
             <planeGeometry args={[2, 2]} />
             <meshBasicMaterial>
                 <canvasTexture attach="map" args={[canvasRef.current]} />

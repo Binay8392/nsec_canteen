@@ -45,10 +45,10 @@ export function OffersModal({ isOpen, onClose }) {
                         initial={{ scale: 0.9, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0.9, opacity: 0 }}
-                        className="w-full max-w-4xl z-50 overflow-y-auto max-h-[90vh] custom-scrollbar"
+                        className="w-full max-w-4xl z-50 overflow-y-auto max-h-[95vh] md:max-h-[90vh] custom-scrollbar"
                     >
-                        <div className="flex justify-between items-center mb-8 sticky top-0 md:static z-10">
-                            <h2 className="text-3xl md:text-5xl font-futuristic text-transparent bg-clip-text bg-gradient-to-r from-neon-purple to-pink-500 drop-shadow-[0_0_10px_rgba(188,19,254,0.8)]">
+                        <div className="flex justify-between items-center mb-6 sticky top-0 bg-black/60 backdrop-blur-lg p-2 rounded-lg z-20">
+                            <h2 className="text-2xl md:text-5xl font-futuristic text-transparent bg-clip-text bg-gradient-to-r from-neon-purple to-pink-500 drop-shadow-[0_0_10px_rgba(188,19,254,0.8)]">
                                 EXCLUSIVE DEALS
                             </h2>
                             <button onClick={onClose} className="text-white hover:text-neon-blue text-3xl bg-black/50 rounded-full w-10 h-10 flex items-center justify-center">×</button>
@@ -58,27 +58,27 @@ export function OffersModal({ isOpen, onClose }) {
                             variants={containerVariants}
                             initial="hidden"
                             animate="visible"
-                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-8"
+                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-20 md:pb-8"
                         >
                             {MOCK_OFFERS.map((item) => (
                                 <motion.div key={item.id} variants={itemVariants}>
-                                    <GlassCard className={`relative h-full flex flex-col justify-between border-2 ${item.color} shadow-[0_0_20px_rgba(0,0,0,0.5)] group hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] overflow-hidden`}>
+                                    <GlassCard className={`relative h-full flex flex-col justify-between border-2 ${item.color} shadow-[0_0_20px_rgba(0,0,0,0.5)] group hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] overflow-hidden min-h-[250px]`}>
                                         {/* Decorative Background Glow */}
                                         <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/10 blur-3xl rounded-full group-hover:bg-white/20 transition-colors" />
 
                                         <div className="mb-4">
-                                            <h3 className="font-futuristic text-2xl mb-2 text-white italic">{item.title}</h3>
+                                            <h3 className="font-futuristic text-xl md:text-2xl mb-2 text-white italic">{item.title}</h3>
                                             <div className="h-1 w-12 bg-white/50 mb-3 rounded-full" />
-                                            <p className="text-gray-300 font-mono">{item.description}</p>
+                                            <p className="text-gray-300 font-mono text-sm md:text-base">{item.description}</p>
                                         </div>
 
                                         <div className="mt-4 flex items-end justify-between">
                                             <div className="flex flex-col">
-                                                <span className="text-xs text-gray-400 uppercase tracking-widest">Valid Today</span>
+                                                <span className="text-[10px] md:text-xs text-gray-400 uppercase tracking-widest">Valid Today</span>
                                                 {item.originalPrice && <span className="text-sm text-red-400 line-through">₹{item.originalPrice}</span>}
                                             </div>
-                                            <div className="bg-white/10 px-4 py-2 rounded-lg border border-white/20 backdrop-blur-sm">
-                                                <span className={`text-2xl font-bold ${item.id === 2 ? 'text-neon-purple' : 'text-neon-blue'}`}>
+                                            <div className="bg-white/10 px-3 py-1 md:px-4 md:py-2 rounded-lg border border-white/20 backdrop-blur-sm">
+                                                <span className={`text-xl md:text-2xl font-bold ${item.id === 2 ? 'text-neon-purple' : 'text-neon-blue'}`}>
                                                     {typeof item.price === 'number' ? `₹${item.price}` : item.price}
                                                 </span>
                                             </div>
@@ -88,7 +88,7 @@ export function OffersModal({ isOpen, onClose }) {
                             ))}
                         </motion.div>
 
-                        <div className="mt-2 text-center text-gray-500 text-xs uppercase tracking-widest border-t border-white/10 pt-4">
+                        <div className="mt-2 text-center text-gray-500 text-[10px] md:text-xs uppercase tracking-widest border-t border-white/10 pt-4 pb-4">
                             * Terms & Conditions Apply • Show ID at Counter
                         </div>
                     </motion.div>
